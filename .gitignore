@@ -1,6 +1,8 @@
 .env
 dist
 build
+built
 node_modules
 .vscode
 *.eslintcache
+logs

@@ -1,40 +1,33 @@
-import babelParser from '@babel/eslint-parser'
 import js from '@eslint/js'
-import globals from 'globals'
+import tseslint from 'typescript-eslint'
 import stylistic from '@stylistic/eslint-plugin'
 
-export default [
+export default tseslint.config(
 	js.configs.recommended,
+	...tseslint.configs.recommendedTypeChecked,
 	{
-		languageOptions: {
-			parser: babelParser,
-			ecmaVersion: 'latest',
-			sourceType: 'module',
-			parserOptions: {
-				ecmaFeatures: {
-					jsx: true
-				}
-			},
-			globals: {
-				...globals.browser,
-				...globals.node
-			}
-		},
+		ignores: ['built/', 'eslint.config.js']
+	},
+	{
 		plugins: {
 			'@stylistic': stylistic
 		},
+		languageOptions: {
+			parserOptions: {
+				project: true,
+				tsconfigRootDir: import.meta.dirname
+			}
+		},
 		rules: {
-			'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+			'@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
 			'@stylistic/semi': ['error', 'never'],
 			'@stylistic/max-len': ['warn', { code: 100 }],
 			'@stylistic/quotes': ['error', 'single', { avoidEscape: true }],
-			'@stylistic/jsx-quotes': ['error', 'prefer-single'],
 			'@stylistic/quote-props': ['error', 'as-needed'],
 			'@stylistic/comma-dangle': ['error', 'never'],
 			'@stylistic/object-curly-spacing': ['error', 'always'],
 			'@stylistic/array-bracket-spacing': ['error', 'never'],
 			'@stylistic/arrow-parens': ['error', 'as-needed']
-		},
-		ignores: ['dist/', 'build/', '/built']
+		}
 	}
-]
+)
