@@ -6,7 +6,7 @@ export default tseslint.config(
 	js.configs.recommended,
 	...tseslint.configs.recommendedTypeChecked,
 	{
-		ignores: ['built/', 'eslint.config.js']
+		ignores: ['dist/', 'eslint.config.js']
 	},
 	{
 		plugins: {
