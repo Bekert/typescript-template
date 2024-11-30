@@ -12,8 +12,10 @@
 		"lint": "npm run eslint:check && npm run prettier:check",
 		"lint:fix": "npm run eslint:check && npm run prettier:fix",
 		"prepare": "husky",
-		"start": "npm run compile && node ./dist/index.js",
-		"dev": "tsx watch --no-warnings=ExperimentalWarning ./src/index.ts",
+		"start": "node --no-warnings=ExperimentalWarning --experimental-strip-types ./src/index.ts",
+		"start:compile": "npm run compile && node ./dist/index.js",
+		"dev": "node --no-warnings=ExperimentalWarning --experimental-strip-types --watch ./src/index.ts",
+		"dev:compile": "tsx watch --no-warnings=ExperimentalWarning ./src/index.ts",
 		"compile": "rm -rf ./built && tsc"
 	},
 	"config": {
