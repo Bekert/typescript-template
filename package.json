@@ -15,7 +15,7 @@
 		"start": "node --no-warnings=ExperimentalWarning --experimental-strip-types ./src/index.ts",
 		"start:compile": "npm run compile && node ./dist/index.js",
 		"dev": "node --no-warnings=ExperimentalWarning --experimental-strip-types --watch ./src/index.ts",
-		"dev:compile": "tsx watch --no-warnings=ExperimentalWarning ./src/index.ts",
+		"dev:ts": "tsx watch --no-warnings=ExperimentalWarning ./src/index.ts",
 		"compile": "rm -rf ./built && tsc"
 	},
 	"config": {
@@ -32,6 +32,9 @@
 		"*.{js,jsx,ts,tsx,json,css,html}": "prettier --write",
 		"*.{js,jsx,ts,tsx}": "eslint"
 	},
+	"dependencies": {
+		"typescript": "^5.7.2"
+	},
 	"devDependencies": {
 		"@commitlint/cli": "^19.6.0",
 		"@commitlint/config-conventional": "^19.6.0",
@@ -45,7 +48,6 @@
 		"lint-staged": "^15.2.10",
 		"prettier": "^3.4.1",
 		"tsx": "^4.19.2",
-		"typescript": "^5.7.2",
 		"typescript-eslint": "^8.16.0"
 	},
 	"type": "module",
